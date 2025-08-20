@@ -1,6 +1,6 @@
 {
   "name": "react-native-google-ads-ui19",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "ngocnk99 <ngocnk99@gmail.com> (https://github.com/ngocnk99)",
   "description": "React Native Google Ads Admob is an easy way to monetize mobile apps with targeted, in-app advertising.",
   "main": "lib/commonjs/index.js",

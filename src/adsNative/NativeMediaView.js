@@ -1,15 +1,10 @@
-import React, { useRef, useEffect, useContext, useCallback } from "react";
-import {
-  findNodeHandle,
-  Platform,
-  requireNativeComponent,
-  UIManager,
-} from "react-native";
-import { NativeAdContext } from "./context";
+import React, { useRef, useEffect, useContext, useCallback } from 'react';
+import { findNodeHandle, Platform, requireNativeComponent, UIManager } from 'react-native';
+import { NativeAdContext } from './context';
 
 let timers = {};
 
-const NativeMediaView = (props) => {
+const NativeMediaView = props => {
   const { nativeAd, nativeAdView } = useContext(NativeAdContext);
   const adMediaView = useRef();
   let nodeHandle = null;
@@ -39,8 +34,8 @@ const NativeMediaView = (props) => {
       }
       UIManager.dispatchViewManagerCommand(
         findNodeHandle(adMediaView.current),
-        UIManager.getViewManagerConfig("RNGADMediaView").Commands.getProgress,
-        undefined
+        UIManager.getViewManagerConfig('RNGADMediaView').Commands.getProgress,
+        [],
       );
     }, 1000);
   };
@@ -64,8 +59,8 @@ const NativeMediaView = (props) => {
     props.onVideoEnd && props.onVideoEnd();
   };
 
-  const onVideoProgress = (event) => {
-    if (Platform.OS === "android") {
+  const onVideoProgress = event => {
+    if (Platform.OS === 'android') {
       let progress = event.nativeEvent;
       let duration = parseFloat(progress.duration);
       let current = parseFloat(progress.currentTime);
@@ -76,7 +71,7 @@ const NativeMediaView = (props) => {
     props.onVideoProgress && props.onVideoProgress(event.nativeEvent);
   };
 
-  const onVideoMute = (event) => {
+  const onVideoMute = event => {
     props.onVideoMute && props.onVideoMute(event.nativeEvent?.muted);
   };
 
@@ -95,6 +90,6 @@ const NativeMediaView = (props) => {
   );
 };
 
-const AdMediaView = requireNativeComponent("RNGADMediaView", NativeMediaView);
+const AdMediaView = requireNativeComponent('RNGADMediaView', NativeMediaView);
 
 export default NativeMediaView;
